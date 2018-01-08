@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F9AC46392002B5440096EC6F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AC46382002B5440096EC6F /* AppDelegate.swift */; };
-		F9AC463B2002B5440096EC6F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AC463A2002B5440096EC6F /* ViewController.swift */; };
+		F9AC463B2002B5440096EC6F /* GenerateQuoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AC463A2002B5440096EC6F /* GenerateQuoteViewController.swift */; };
 		F9AC463E2002B5440096EC6F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9AC463C2002B5440096EC6F /* Main.storyboard */; };
 		F9AC46402002B5440096EC6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9AC463F2002B5440096EC6F /* Assets.xcassets */; };
 		F9AC46432002B5440096EC6F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9AC46412002B5440096EC6F /* LaunchScreen.storyboard */; };
@@ -28,7 +28,7 @@
 /* Begin PBXFileReference section */
 		F9AC46352002B5440096EC6F /* MemoryHole.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemoryHole.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9AC46382002B5440096EC6F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F9AC463A2002B5440096EC6F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F9AC463A2002B5440096EC6F /* GenerateQuoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateQuoteViewController.swift; sourceTree = "<group>"; };
 		F9AC463D2002B5440096EC6F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F9AC463F2002B5440096EC6F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F9AC46422002B5440096EC6F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -78,7 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				F9AC46382002B5440096EC6F /* AppDelegate.swift */,
-				F9AC463A2002B5440096EC6F /* ViewController.swift */,
+				F9AC463A2002B5440096EC6F /* GenerateQuoteViewController.swift */,
 				F9AC463C2002B5440096EC6F /* Main.storyboard */,
 				F9AC463F2002B5440096EC6F /* Assets.xcassets */,
 				F9AC46412002B5440096EC6F /* LaunchScreen.storyboard */,
@@ -199,7 +199,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F9AC463B2002B5440096EC6F /* ViewController.swift in Sources */,
+				F9AC463B2002B5440096EC6F /* GenerateQuoteViewController.swift in Sources */,
 				F9AC46392002B5440096EC6F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -354,6 +354,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JCYYKWU6KX;
 				INFOPLIST_FILE = MemoryHole/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.cocoaheads.pdx.MemoryHole;
@@ -368,6 +369,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JCYYKWU6KX;
 				INFOPLIST_FILE = MemoryHole/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.cocoaheads.pdx.MemoryHole;

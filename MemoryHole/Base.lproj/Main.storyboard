@@ -1,24 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" systemVersion="17A277" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Generate Quote View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="GenerateQuoteViewController" customModule="MemoryHole" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="That really somethings my something" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dod-08-D87">
+                                <rect key="frame" x="12" y="20" width="351" height="583"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="54"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <size key="shadowOffset" width="1" height="1"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UCq-hl-5IN">
+                                <rect key="frame" x="0.0" y="603" width="187.5" height="64"/>
+                                <color key="backgroundColor" red="0.1449805797673939" green="0.28272900525837408" blue="0.43834786548227223" alpha="0.20427547089041095" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="dFa-V4-w89"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="New">
+                                    <color key="titleColor" red="1" green="0.91242306289999997" blue="0.30469108369999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="getNewQuote" destination="BYZ-38-t0r" eventType="touchUpInside" id="qSD-Kd-oJP"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8X9-YS-Bal">
+                                <rect key="frame" x="188.5" y="603.5" width="186.5" height="64"/>
+                                <color key="backgroundColor" red="0.1449805797673939" green="0.28272900525837408" blue="0.43834786548227223" alpha="0.20427547089041095" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="Rate">
+                                    <color key="titleColor" red="1" green="0.91242306289999997" blue="0.30469108369999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="rateQuote" destination="BYZ-38-t0r" eventType="touchUpInside" id="iUt-bQ-AiA"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.32656646938019079" green="0.62639034644181335" blue="0.99865164974619292" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="8X9-YS-Bal" firstAttribute="height" secondItem="UCq-hl-5IN" secondAttribute="height" id="0hb-DH-20o"/>
+                            <constraint firstItem="UCq-hl-5IN" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="5NT-gQ-vJB"/>
+                            <constraint firstItem="dod-08-D87" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="-12" id="CZD-bK-Bvr"/>
+                            <constraint firstItem="8X9-YS-Bal" firstAttribute="centerY" secondItem="UCq-hl-5IN" secondAttribute="centerY" id="MPP-WQ-9Mh"/>
+                            <constraint firstItem="8X9-YS-Bal" firstAttribute="leading" secondItem="UCq-hl-5IN" secondAttribute="trailing" constant="1" id="OwK-GE-DWy"/>
+                            <constraint firstItem="UCq-hl-5IN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Qy9-5j-ATH"/>
+                            <constraint firstItem="UCq-hl-5IN" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="centerX" constant="-0.5" id="UEq-T0-3VZ"/>
+                            <constraint firstItem="dod-08-D87" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Ypr-AT-BPt"/>
+                            <constraint firstItem="8X9-YS-Bal" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="bhk-nc-w2V"/>
+                            <constraint firstItem="dod-08-D87" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="12" id="dDg-DX-erD"/>
+                            <constraint firstItem="dod-08-D87" firstAttribute="bottom" secondItem="UCq-hl-5IN" secondAttribute="top" id="lvz-2T-4WU"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="quoteLabel" destination="dod-08-D87" id="326-0y-tHa"/>
+                        <outlet property="rateButton" destination="8X9-YS-Bal" id="2KC-FG-47G"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
         </scene>
     </scenes>
 </document>

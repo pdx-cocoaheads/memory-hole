@@ -80,12 +80,11 @@
 			isa = PBXGroup;
 			children = (
 				F9AC46382002B5440096EC6F /* AppDelegate.swift */,
-				F9AC463A2002B5440096EC6F /* GenerateQuoteViewController.swift */,
+				F9AC465B20033C840096EC6F /* ViewControllers */,
 				F9AC463C2002B5440096EC6F /* Main.storyboard */,
 				F9AC463F2002B5440096EC6F /* Assets.xcassets */,
 				F9AC46412002B5440096EC6F /* LaunchScreen.storyboard */,
 				F9AC46442002B5440096EC6F /* Info.plist */,
-				F9AC465920031E370096EC6F /* QuoteHistoryViewController.swift */,
 			);
 			path = MemoryHole;
 			sourceTree = "<group>";
@@ -97,6 +96,15 @@
 				F9AC464F2002B5440096EC6F /* Info.plist */,
 			);
 			path = MemoryHoleTests;
+			sourceTree = "<group>";
+		};
+		F9AC465B20033C840096EC6F /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				F9AC463A2002B5440096EC6F /* GenerateQuoteViewController.swift */,
+				F9AC465920031E370096EC6F /* QuoteHistoryViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

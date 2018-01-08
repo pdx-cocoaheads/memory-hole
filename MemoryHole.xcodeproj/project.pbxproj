@@ -13,6 +13,7 @@
 		F9AC46402002B5440096EC6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9AC463F2002B5440096EC6F /* Assets.xcassets */; };
 		F9AC46432002B5440096EC6F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9AC46412002B5440096EC6F /* LaunchScreen.storyboard */; };
 		F9AC464E2002B5440096EC6F /* MemoryHoleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AC464D2002B5440096EC6F /* MemoryHoleTests.swift */; };
+		F9AC465A20031E370096EC6F /* QuoteHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AC465920031E370096EC6F /* QuoteHistoryViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		F9AC46492002B5440096EC6F /* MemoryHoleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MemoryHoleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9AC464D2002B5440096EC6F /* MemoryHoleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryHoleTests.swift; sourceTree = "<group>"; };
 		F9AC464F2002B5440096EC6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F9AC465920031E370096EC6F /* QuoteHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteHistoryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				F9AC463F2002B5440096EC6F /* Assets.xcassets */,
 				F9AC46412002B5440096EC6F /* LaunchScreen.storyboard */,
 				F9AC46442002B5440096EC6F /* Info.plist */,
+				F9AC465920031E370096EC6F /* QuoteHistoryViewController.swift */,
 			);
 			path = MemoryHole;
 			sourceTree = "<group>";
@@ -201,6 +204,7 @@
 			files = (
 				F9AC463B2002B5440096EC6F /* GenerateQuoteViewController.swift in Sources */,
 				F9AC46392002B5440096EC6F /* AppDelegate.swift in Sources */,
+				F9AC465A20031E370096EC6F /* QuoteHistoryViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

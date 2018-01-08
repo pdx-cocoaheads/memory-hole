@@ -8,27 +8,67 @@
 
 import UIKit
 
-class GenerateQuoteViewController: UIViewController {
-    @IBOutlet var quoteLabel: UILabel!
-    @IBOutlet weak var rateButton: UIButton!
+protocol GenerateQuoteDelegate {
+    func savedRating(_ rating: String, for quote: String)
+}
 
+final class GenerateQuoteViewController: UIViewController {
+    @IBOutlet var quoteLabel: UILabel!
+    @IBOutlet var ratingButtons: [UIButton]!
+
+    var delegate: GenerateQuoteDelegate?
+
+    override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 
+        hideButtons()
         getNewQuote()
-        rateButton.isEnabled = false
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func hideButtons() {
+        for button in ratingButtons {
+            button.alpha = 0
+        }
+    }
+    func hideButtonsAnimated() {
+        UIView.animate(withDuration: 0.3, animations: hideButtons)
     }
 
-    @IBAction func rateQuote() {
+    func showButtons() {
+        for button in ratingButtons {
+            button.alpha = 1
+        }
+    }
+    func showButtonsAnimated() {
+        UIView.animate(withDuration: 0.3, animations: showButtons)
     }
 
-    @IBAction func getNewQuote() {
+    @IBAction func 💩tapped() {
+        delegate?.savedRating("💩", for: quoteLabel.text!)
+        hideButtonsAnimated()
+        getNewQuote()
+    }
+
+    @IBAction func 💖tapped() {
+        delegate?.savedRating("💖", for: quoteLabel.text!)
+        hideButtonsAnimated()
+        getNewQuote()
+    }
+
+    @IBAction func 😂tapped() {
+        delegate?.savedRating("😂", for: quoteLabel.text!)
+        hideButtonsAnimated()
+        getNewQuote()
+    }
+
+    @IBAction func doneTapped() {
+        dismiss(animated: true, completion: nil)
+    }
+
+    func getNewQuote() {
+        quoteLabel.text = "Loading..."
         URLSession.shared.dataTask(with: URL(string: "http://api.chew.pro/trbmb")!) { (data, response, error) in
             if let error = error {
                 print("Error: \(error)")
@@ -37,7 +77,7 @@ class GenerateQuoteViewController: UIViewController {
                 let quote = (json as? [String])?.first {
                 DispatchQueue.main.async {
                     self.quoteLabel.text = quote
-                    self.rateButton.isEnabled = true
+                    self.showButtonsAnimated()
                 }
             }
         }.resume()

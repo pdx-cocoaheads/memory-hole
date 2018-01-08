@@ -14,8 +14,8 @@ protocol GenerateQuoteDelegate {
 
 final class GenerateQuoteViewController: UIViewController {
     @IBOutlet var quoteLabel: UILabel!
-    @IBOutlet var ratingButtons: [UIButton]!
-
+    @IBOutlet weak var ratingsButtons: UIStackView!
+    
     var delegate: GenerateQuoteDelegate?
 
     override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
@@ -23,44 +23,13 @@ final class GenerateQuoteViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 
-        hideButtons()
+        ratingsButtons.alpha = 0
         getNewQuote()
     }
 
-    func hideButtons() {
-        for button in ratingButtons {
-            button.alpha = 0
-        }
-    }
-    func hideButtonsAnimated() {
-        UIView.animate(withDuration: 0.3, animations: hideButtons)
-    }
-
-    func showButtons() {
-        for button in ratingButtons {
-            button.alpha = 1
-        }
-    }
-    func showButtonsAnimated() {
-        UIView.animate(withDuration: 0.3, animations: showButtons)
-    }
-
-    @IBAction func 💩tapped() {
-        delegate?.savedRating("💩", for: quoteLabel.text!)
-        hideButtonsAnimated()
-        getNewQuote()
-    }
-
-    @IBAction func 💖tapped() {
-        delegate?.savedRating("💖", for: quoteLabel.text!)
-        hideButtonsAnimated()
-        getNewQuote()
-    }
-
-    @IBAction func 😂tapped() {
-        delegate?.savedRating("😂", for: quoteLabel.text!)
-        hideButtonsAnimated()
-        getNewQuote()
+    @IBAction func ratingButtonTapped(sender: UIButton) {
+        delegate?.savedRating(sender.titleLabel!.text!, for: quoteLabel.text!)
+        UIView.animate(withDuration: 0.33, animations: { self.ratingsButtons.alpha = 0 }, completion: { _ in self.getNewQuote() })
     }
 
     @IBAction func doneTapped() {
@@ -77,7 +46,9 @@ final class GenerateQuoteViewController: UIViewController {
                 let quote = (json as? [String])?.first {
                 DispatchQueue.main.async {
                     self.quoteLabel.text = quote
-                    self.showButtonsAnimated()
+                    UIView.animate(withDuration: 0.33) {
+                        self.ratingsButtons.alpha = 1
+                    }
                 }
             }
         }.resume()

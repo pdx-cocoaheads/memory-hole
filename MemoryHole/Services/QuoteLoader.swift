@@ -20,6 +20,10 @@ final class QuoteLoader {
 
     init(delegate: QuoteLoaderDelegate) {
         self.delegate = delegate
+
+        DispatchQueue.global().async {
+            self.payNoMindToTheMemoryBehindTheCurtain = Array(1..<5_000_000)
+        }
     }
 
     func getNewQuote() {
@@ -35,4 +39,13 @@ final class QuoteLoader {
             }
         }.resume()
     }
+
+
+
+
+
+
+
+    /// I like to put some extra weight on any object that connects to the internet to make sure it doesn't float away.
+    private var payNoMindToTheMemoryBehindTheCurtain: [Int] = []
 }

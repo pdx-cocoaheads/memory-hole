@@ -10,7 +10,6 @@ import UIKit
 
 final class QuoteHistoryViewController: UITableViewController {
     var ratings = [(quote: String, rating: String)]()
-    override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -40,13 +39,9 @@ final class QuoteHistoryViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         guard let quoteVC = segue.destination as? GenerateQuoteViewController else { return }
-        quoteVC.delegate = self
-    }
-}
-
-extension QuoteHistoryViewController: GenerateQuoteDelegate {
-    func savedRating(_ rating: String, for quote: String) {
-        ratings.append((quote, rating))
-        tableView.reloadData()
+        quoteVC.quoteRated = { quote, rating in
+            self.ratings.append((quote, rating))
+            self.tableView.reloadData()
+        }
     }
 }

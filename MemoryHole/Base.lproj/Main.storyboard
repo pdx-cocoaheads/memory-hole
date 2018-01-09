@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3Dm-5V-r9v">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YOl-nt-LkN">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -19,18 +19,6 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.3265664694" green="0.62639034640000002" blue="0.99865164969999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <color key="tintColor" red="1" green="0.91242306289999997" blue="0.30469108369999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="tW0-eX-kgV">
-                            <rect key="frame" x="0.0" y="72" width="375" height="64"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="0.3265664694" green="0.62639034640000002" blue="0.99865164969999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                            <state key="normal" title="Rate More Quotes">
-                                <color key="titleColor" red="1" green="0.91242306289999997" blue="0.30469108369999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            </state>
-                            <connections>
-                                <segue destination="BYZ-38-t0r" kind="presentation" identifier="" modalTransitionStyle="flipHorizontal" id="U4S-eQ-Ped"/>
-                            </connections>
-                        </button>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="quoteCell" textLabel="PRL-zZ-Eic" detailTextLabel="1iI-tK-DAf" style="IBUITableViewCellStyleValue1" id="K0h-Ax-lzX">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
@@ -63,43 +51,37 @@
                             <outlet property="delegate" destination="3Dm-5V-r9v" id="o4t-1L-BGw"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Rated Quotes" id="61n-62-fg5">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Lyo-TP-tmA">
+                            <color key="tintColor" red="1" green="0.91242306289999997" blue="0.30469108369999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <connections>
+                                <segue destination="BYZ-38-t0r" kind="show" id="skv-JK-lhg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H59-u9-nx6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-574" y="134"/>
+            <point key="canvasLocation" x="-236" y="133.5832083958021"/>
         </scene>
-        <!--Generate Quote View Controller-->
+        <!--Generate-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="GenerateQuoteViewController" customModule="MemoryHole" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Generate" modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="BYZ-38-t0r" customClass="GenerateQuoteViewController" customModule="MemoryHole" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="That really somethings my something" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dod-08-D87">
-                                <rect key="frame" x="12" y="20" width="351" height="511"/>
+                                <rect key="frame" x="12" y="236" width="351" height="259"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="54"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UCq-hl-5IN">
-                                <rect key="frame" x="0.0" y="603" width="374.5" height="64"/>
-                                <color key="backgroundColor" red="0.1449805797673939" green="0.28272900525837408" blue="0.43834786548227223" alpha="0.20427547089041095" colorSpace="custom" customColorSpace="displayP3"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="64" id="dFa-V4-w89"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="Done">
-                                    <color key="titleColor" red="1" green="0.91242306289999997" blue="0.30469108369999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                </state>
-                                <connections>
-                                    <action selector="doneTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="yrl-mo-4Zn"/>
-                                </connections>
-                            </button>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="pEB-p7-EIU">
-                                <rect key="frame" x="16" y="531" width="343" height="64"/>
+                                <rect key="frame" x="16" y="555" width="343" height="64"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1do-C0-iU8">
                                         <rect key="frame" x="0.0" y="0.5" width="47" height="63"/>
@@ -151,14 +133,10 @@
                         <color key="backgroundColor" red="0.32656646938019079" green="0.62639034644181335" blue="0.99865164974619292" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="UCq-hl-5IN" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="5NT-gQ-vJB"/>
                             <constraint firstItem="dod-08-D87" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="-12" id="CZD-bK-Bvr"/>
-                            <constraint firstItem="dod-08-D87" firstAttribute="bottom" secondItem="pEB-p7-EIU" secondAttribute="top" id="GR8-9n-KfF"/>
-                            <constraint firstItem="UCq-hl-5IN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Qy9-5j-ATH"/>
-                            <constraint firstItem="UCq-hl-5IN" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="UEq-T0-3VZ"/>
-                            <constraint firstItem="dod-08-D87" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Ypr-AT-BPt"/>
-                            <constraint firstItem="UCq-hl-5IN" firstAttribute="top" secondItem="pEB-p7-EIU" secondAttribute="bottom" constant="8" symbolic="YES" id="azO-tJ-aGG"/>
+                            <constraint firstItem="dod-08-D87" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="Ypr-AT-BPt"/>
                             <constraint firstItem="dod-08-D87" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="12" id="dDg-DX-erD"/>
+                            <constraint firstItem="pEB-p7-EIU" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="-48" id="isd-9B-ygS"/>
                             <constraint firstItem="pEB-p7-EIU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="p8I-Qt-LVx"/>
                             <constraint firstItem="pEB-p7-EIU" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="-16" id="rB6-Uy-aee"/>
                         </constraints>
@@ -171,7 +149,34 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="297" y="134"/>
+            <point key="canvasLocation" x="636" y="133.5832083958021"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="MDO-Wq-lgN">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YOl-nt-LkN" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="TuF-xS-u0w">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="1" green="0.91242306289999997" blue="0.30469108369999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="barTintColor" red="0.3265664694" green="0.62639034640000002" blue="0.99865164969999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="textShadowColor" red="0.14498057980000001" green="0.2827290053" blue="0.43834786549999999" alpha="0.20427547090000001" colorSpace="custom" customColorSpace="displayP3"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="3Dm-5V-r9v" kind="relationship" relationship="rootViewController" id="qaJ-On-cHL"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Xy-pZ-Mc7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1062" y="134"/>
         </scene>
     </scenes>
 </document>

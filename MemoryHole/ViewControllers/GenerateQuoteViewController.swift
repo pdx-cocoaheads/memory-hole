@@ -15,7 +15,7 @@ final class GenerateQuoteViewController: UIViewController {
     @IBOutlet var quoteLabel: UILabel!
     @IBOutlet weak var ratingsButtons: UIStackView!
 
-    private var loader: QuoteLoader!
+    private lazy var loader: QuoteLoader = { return QuoteLoader(delegate: self) }()
 
     var quoteRated: QuoteRatedCallback?
     var quoteReceived: QuoteReceivedCallback?
@@ -24,19 +24,16 @@ final class GenerateQuoteViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 
-        loader = QuoteLoader(delegate: self)
-        getNewQuote()
-
         let refresh = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(getNewQuote))
         navigationItem.rightBarButtonItem = refresh
     }
 
     @IBAction func ratingButtonTapped(sender: UIButton) {
         quoteRated?(quoteLabel.text!, sender.titleLabel!.text!)
-
     }
 
     @objc func getNewQuote() {
+        loadViewIfNeeded()
         quoteLabel.text = "Loading..."
         hideRatingsButtons()
         loader.getNewQuote()
@@ -57,8 +54,8 @@ final class GenerateQuoteViewController: UIViewController {
 
 extension GenerateQuoteViewController: QuoteLoaderDelegate {
     func gotNewQuote(_ quote: String) {
-        quoteLabel.text = quote
         quoteReceived?(quote)
+        quoteLabel.text = quote
         showRatingsButtons()
     }
 

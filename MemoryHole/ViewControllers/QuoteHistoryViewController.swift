@@ -11,6 +11,16 @@ import UIKit
 final class QuoteHistoryViewController: UITableViewController {
     var ratings = [(quote: String, rating: String)]()
 
+    private let queue: OperationQueue = {
+        let q = OperationQueue()
+        q.maxConcurrentOperationCount = 1
+        return q
+    }()
+    
+    private var generateVCCount = 0 {
+        didSet { self.updateQueueButton() }
+    }
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -34,14 +44,58 @@ final class QuoteHistoryViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
+
+        updateQueueButton()
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
-        guard let quoteVC = segue.destination as? GenerateQuoteViewController else { return }
-        quoteVC.quoteRated = { quote, rating in
-            self.ratings.append((quote, rating))
-            self.tableView.reloadData()
+    func updateQueueButton() {
+        let queueButton = navigationItem.rightBarButtonItems!.filter({ $0.tag == 1 }).first!
+        queueButton.title = generateVCCount > 0 ? "\(generateVCCount)" : "Q"
+    }
+
+    @IBAction func pushGenerate(_ sender: UIBarButtonItem) {
+        let generateVC = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "generateVC") as! GenerateQuoteViewController
+        generateVC.quoteRated = quoteRated
+        generateVC.getNewQuote()
+        navigationController?.pushViewController(generateVC, animated: true)
+    }
+
+    @IBAction func modalGenerate() {
+        let generateVC = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "generateVC") as! GenerateQuoteViewController
+        generateVC.modalPresentationStyle = .overCurrentContext
+        generateVC.modalTransitionStyle = .crossDissolve
+        generateVC.view.backgroundColor = generateVC.view.backgroundColor?.withAlphaComponent(0.25)
+        definesPresentationContext = true
+
+        generateVC.quoteReceived = { _ in
+            if self.presentedViewController != nil {
+                self.queue.isSuspended = true
+            } else {
+                self.queue.isSuspended = false
+            }
+            self.queue.addOperation {
+                DispatchQueue.main.sync {
+                    self.present(generateVC, animated: true)
+                    self.queue.isSuspended = true
+                }
+            }
         }
+        generateVC.quoteRated = { quote, rating in
+            DispatchQueue.main.async {
+                self.quoteRated(quote, rating)
+                generateVC.dismiss(animated: true) {
+                    self.queue.isSuspended = false
+                    self.generateVCCount -= 1
+                }
+            }
+        }
+
+        generateVC.getNewQuote()
+        generateVCCount += 1
+    }
+
+    private func quoteRated(_ quote: String, _ rating: String) {
+        ratings.append((quote, rating))
+        tableView.reloadData()
     }
 }

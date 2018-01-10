@@ -8,7 +8,9 @@
 
 import UIKit
 
+typealias QuoteReceivedCallback = (_ quote: String) -> Void
 typealias QuoteRatedCallback = (_ quote: String, _ rating: String) -> Void
+
 final class GenerateQuoteViewController: UIViewController {
     @IBOutlet var quoteLabel: UILabel!
     @IBOutlet weak var ratingsButtons: UIStackView!
@@ -16,35 +18,48 @@ final class GenerateQuoteViewController: UIViewController {
     private var loader: QuoteLoader!
 
     var quoteRated: QuoteRatedCallback?
+    var quoteReceived: QuoteReceivedCallback?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 
-        ratingsButtons.alpha = 0
         loader = QuoteLoader(delegate: self)
         getNewQuote()
+
+        let refresh = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(getNewQuote))
+        navigationItem.rightBarButtonItem = refresh
     }
 
     @IBAction func ratingButtonTapped(sender: UIButton) {
         quoteRated?(quoteLabel.text!, sender.titleLabel!.text!)
-        UIView.animate(withDuration: 0.33, animations: { self.ratingsButtons.alpha = 0 }, completion: { _ in
-            self.getNewQuote()
-        })
+
     }
 
-    func getNewQuote() {
+    @objc func getNewQuote() {
         quoteLabel.text = "Loading..."
+        hideRatingsButtons()
         loader.getNewQuote()
+    }
+
+    private func hideRatingsButtons() {
+        UIView.animate(withDuration: 0.33) {
+            self.ratingsButtons.alpha = 0
+        }
+    }
+
+    private func showRatingsButtons() {
+        UIView.animate(withDuration: 0.33) {
+            self.ratingsButtons.alpha = 1
+        }
     }
 }
 
 extension GenerateQuoteViewController: QuoteLoaderDelegate {
     func gotNewQuote(_ quote: String) {
         quoteLabel.text = quote
-        UIView.animate(withDuration: 0.33) {
-            self.ratingsButtons.alpha = 1
-        }
+        quoteReceived?(quote)
+        showRatingsButtons()
     }
 
     func getNewQuoteFailed(with error: Error) {

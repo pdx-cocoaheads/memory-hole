@@ -8,8 +8,8 @@
 
 import UIKit
 
-typealias QuoteReceivedCallback = (_ quote: String) -> Void
-typealias QuoteRatedCallback = (_ quote: String, _ rating: String) -> Void
+typealias QuoteReceivedCallback = (_ quote: String, _ vc: GenerateQuoteViewController) -> Void
+typealias QuoteRatedCallback = (_ quote: String, _ rating: String, _ vc: GenerateQuoteViewController) -> Void
 
 final class GenerateQuoteViewController: UIViewController {
     @IBOutlet var quoteLabel: UILabel!
@@ -29,7 +29,7 @@ final class GenerateQuoteViewController: UIViewController {
     }
 
     @IBAction func ratingButtonTapped(sender: UIButton) {
-        quoteRated?(quoteLabel.text!, sender.titleLabel!.text!)
+        quoteRated?(quoteLabel.text!, sender.titleLabel!.text!, self)
     }
 
     @objc func getNewQuote() {
@@ -54,7 +54,7 @@ final class GenerateQuoteViewController: UIViewController {
 
 extension GenerateQuoteViewController: QuoteLoaderDelegate {
     func gotNewQuote(_ quote: String) {
-        quoteReceived?(quote)
+        quoteReceived?(quote, self)
         quoteLabel.text = quote
         showRatingsButtons()
     }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol QuoteLoaderDelegate {
+protocol QuoteLoaderDelegate: class {
     func gotNewQuote(_ quote: String)
     func getNewQuoteFailed(with error: Error)
 }
@@ -16,7 +16,7 @@ protocol QuoteLoaderDelegate {
 final class QuoteLoader {
     private let url = URL(string: "http://api.chew.pro/trbmb")!
     private let session = URLSession.shared
-    var delegate: QuoteLoaderDelegate
+    weak var delegate: QuoteLoaderDelegate?
 
     init(delegate: QuoteLoaderDelegate) {
         self.delegate = delegate
@@ -29,12 +29,12 @@ final class QuoteLoader {
     func getNewQuote() {
         session.dataTask(with: url) { (data, response, error) in
             if let error = error {
-                self.delegate.getNewQuoteFailed(with: error)
+                self.delegate?.getNewQuoteFailed(with: error)
             } else if let data = data,
                 let json = try? JSONSerialization.jsonObject(with: data, options: []),
                 let quote = (json as? [String])?.first {
                 DispatchQueue.main.asyncAfter(deadline: .now()) {
-                    self.delegate.gotNewQuote(quote)
+                    self.delegate?.gotNewQuote(quote)
                 }
             }
         }.resume()

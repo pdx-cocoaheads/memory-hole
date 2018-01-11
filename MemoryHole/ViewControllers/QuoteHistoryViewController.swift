@@ -16,10 +16,6 @@ final class QuoteHistoryViewController: UITableViewController {
         q.maxConcurrentOperationCount = 1
         return q
     }()
-    
-    private var generateVCCount = 0 {
-        didSet { self.updateQueueButton() }
-    }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -50,16 +46,19 @@ final class QuoteHistoryViewController: UITableViewController {
 
     func updateQueueButton() {
         let queueButton = navigationItem.rightBarButtonItems!.filter({ $0.tag == 1 }).first!
-        queueButton.title = generateVCCount > 0 ? "\(generateVCCount)" : "Q"
+        queueButton.title = enquedVCs.count > 0 ? "\(enquedVCs.count)" : "Q"
     }
 
     @IBAction func pushGenerate(_ sender: UIBarButtonItem) {
         let generateVC = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "generateVC") as! GenerateQuoteViewController
-        generateVC.quoteRated = quoteRated
+        generateVC.quoteRated = { quote, rating, _ in  self.quoteRated(quote, rating) }
         generateVC.getNewQuote()
         navigationController?.pushViewController(generateVC, animated: true)
     }
 
+    var enquedVCs = [GenerateQuoteViewController]() {
+        didSet { self.updateQueueButton() }
+    }
     @IBAction func modalGenerate() {
         let generateVC = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "generateVC") as! GenerateQuoteViewController
         generateVC.modalPresentationStyle = .overCurrentContext
@@ -67,7 +66,7 @@ final class QuoteHistoryViewController: UITableViewController {
         generateVC.view.backgroundColor = generateVC.view.backgroundColor?.withAlphaComponent(0.25)
         definesPresentationContext = true
 
-        generateVC.quoteReceived = { _ in
+        generateVC.quoteReceived = { [unowned self] _, vc in
             if self.presentedViewController != nil {
                 self.queue.isSuspended = true
             } else {
@@ -75,23 +74,23 @@ final class QuoteHistoryViewController: UITableViewController {
             }
             self.queue.addOperation {
                 DispatchQueue.main.sync {
-                    self.present(generateVC, animated: true)
+                    self.present(vc, animated: true)
                     self.queue.isSuspended = true
                 }
             }
         }
-        generateVC.quoteRated = { quote, rating in
+        generateVC.quoteRated = { [unowned self] quote, rating, vc in
             DispatchQueue.main.async {
                 self.quoteRated(quote, rating)
-                generateVC.dismiss(animated: true) {
+                vc.dismiss(animated: true) {
                     self.queue.isSuspended = false
-                    self.generateVCCount -= 1
+                    self.enquedVCs.remove(at: self.enquedVCs.index(of: vc)!)
                 }
             }
         }
 
         generateVC.getNewQuote()
-        generateVCCount += 1
+        enquedVCs.append(generateVC)
     }
 
     private func quoteRated(_ quote: String, _ rating: String) {
